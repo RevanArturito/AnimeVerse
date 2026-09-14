@@ -7,6 +7,7 @@
 
 import Alamofire
 import Combine
+import Foundation
 
 protocol AnimeRemoteDataSource {
     func getTopAnime(page: Int) -> AnyPublisher<[AnimeDataDTO], Error>
@@ -34,10 +35,17 @@ final class AnimeRemoteDataSourceImpl: AnimeRemoteDataSource {
             .eraseToAnyPublisher()
     }
 
+    private let session: Session = {
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 30
+        config.timeoutIntervalForResource = 60
+        return Session(configuration: config)
+    }()
+
     private func request<T: Decodable>(url: String, as type: T.Type) -> AnyPublisher<T, Error> {
         Deferred {
-            Future<T, Error> { promise in
-                AF.request(url)
+            Future<T, Error> { [weak self] promise in
+                self?.session.request(url)
                     .validate()
                     .responseDecodable(of: T.self) { response in
                         switch response.result {
@@ -49,6 +57,28 @@ final class AnimeRemoteDataSourceImpl: AnimeRemoteDataSource {
                     }
             }
         }
+        .catch { error -> AnyPublisher<T, Error> in
+            Just(())
+                .delay(for: .seconds(2), scheduler: DispatchQueue.main)
+                .flatMap { _ in
+                    Deferred {
+                        Future<T, Error> { [weak self] promise in
+                            self?.session.request(url)
+                                .validate()
+                                .responseDecodable(of: T.self) { response in
+                                    switch response.result {
+                                    case .success(let value):
+                                        promise(.success(value))
+                                    case .failure(let error):
+                                        promise(.failure(error))
+                                    }
+                                }
+                        }
+                    }
+                }
+                .eraseToAnyPublisher()
+        }
+        .retry(2)
         .eraseToAnyPublisher()
     }
 }

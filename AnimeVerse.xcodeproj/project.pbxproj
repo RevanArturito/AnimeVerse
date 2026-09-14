@@ -44,29 +44,17 @@
 		B6B3B4213057C85000B78383 /* Exceptions for "AnimeVerse" folder in "AnimeVerse" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Example.xcconfig,
 				Info.plist,
 			);
 			target = B6B3B3653057B88500B78383 /* AnimeVerse */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		B6B3B4263057C8B500B78383 /* Exceptions for "AnimeVerse" folder in "Compile Sources" phase from "AnimeVerse" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = B6B3B3623057B88500B78383 /* Sources */;
-			membershipExceptions = (
-				Example.xcconfig,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		B6B3B3683057B88500B78383 /* AnimeVerse */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				B6B3B4213057C85000B78383 /* Exceptions for "AnimeVerse" folder in "AnimeVerse" target */,
-				B6B3B4263057C8B500B78383 /* Exceptions for "AnimeVerse" folder in "Compile Sources" phase from "AnimeVerse" target */,
 			);
 			path = AnimeVerse;
 			sourceTree = "<group>";

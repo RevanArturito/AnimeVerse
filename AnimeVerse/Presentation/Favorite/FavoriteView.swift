@@ -26,16 +26,19 @@ struct FavoriteView: View {
                         .padding(.horizontal, 32)
                 } else {
                     List(viewModel.favorites) { anime in
-                        NavigationLink(value: anime.id) {
-                            AnimeRowView(anime: anime)
-                        }
-                        .buttonStyle(.plain)
+                        AnimeRowView(anime: anime)
+                            .background(
+                                NavigationLink(value: anime.id) { EmptyView() }
+                                    .opacity(0)
+                            )
+                            .listRowSeparator(.hidden)
                     }
                     .listStyle(.plain)
                     .scrollContentBackground(.hidden)
                 }
             }
             .navigationTitle("Favorit")
+            .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: Int.self) { animeId in
                 DetailView(viewModel: AppAssembly.shared.resolver.resolve(DetailViewModel.self, argument: animeId)!)
             }

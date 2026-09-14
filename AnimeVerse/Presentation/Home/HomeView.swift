@@ -25,10 +25,12 @@ struct HomeView: View {
                         .foregroundColor(.textSecondary)
                 } else {
                     List(viewModel.animeList) { anime in
-                        NavigationLink(value: anime.id) {
-                            AnimeRowView(anime: anime)
-                        }
-                        .buttonStyle(.plain)
+                        AnimeRowView(anime: anime)
+                            .background(
+                                NavigationLink(value: anime.id) { EmptyView() }
+                                    .opacity(0)
+                            )
+                            .listRowSeparator(.hidden)
                     }
                     .listStyle(.plain)
                     .scrollContentBackground(.hidden)
@@ -36,6 +38,7 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("Top Anime")
+            .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $viewModel.searchQuery, prompt: "Cari anime...")
             .navigationDestination(for: Int.self) { animeId in
                 DetailView(viewModel: AppAssembly.shared.resolver.resolve(DetailViewModel.self, argument: animeId)!)

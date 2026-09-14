@@ -49,6 +49,7 @@ struct AboutView: View {
             }
             .background(Color.bgPrimary.ignoresSafeArea())
             .navigationTitle("About")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
