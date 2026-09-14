@@ -28,13 +28,6 @@ struct AboutView: View {
                         .font(.body(14))
                         .foregroundColor(.accentPink)
 
-                    Text("Mahasiswa/Developer yang sedang belajar Clean Architecture, Combine, dan membangun AnimeVerse sebagai submission kelas iOS.")
-                        .font(.body(15))
-                        .foregroundColor(.textSecondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 24)
-                        .padding(.top, 4)
-
                     Divider().background(Color.bgCard).padding(.vertical, 12)
 
                     VStack(alignment: .leading, spacing: 14) {

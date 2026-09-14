@@ -15,6 +15,8 @@ final class HomeViewModel: ObservableObject {
     @Published private(set) var isLoading: Bool = false
     @Published var errorMessage: String?
 
+    private var allAnime: [Anime] = []
+
     private let getTopAnimeUseCase: GetTopAnimeUseCase
     private let searchAnimeUseCase: SearchAnimeUseCase
     private var cancellables = Set<AnyCancellable>()
@@ -32,32 +34,40 @@ final class HomeViewModel: ObservableObject {
     func refresh() { pullToRefreshSubject.send(()) }
 
     private func bind() {
-        let load = Publishers.Merge(viewDidLoadSubject, pullToRefreshSubject)
-            .map { "" }
-        
-        let search = $searchQuery
-            .debounce(for: .milliseconds(400), scheduler: RunLoop.main)
-            .removeDuplicates()
-            .dropFirst()
-
-        Publishers.Merge(load, search)
+        Publishers.Merge(viewDidLoadSubject, pullToRefreshSubject)
             .handleEvents(receiveOutput: { [weak self] _ in self?.isLoading = true })
-            .map { [weak self] query -> AnyPublisher<[Anime], Never> in
+            .flatMap { [weak self] _ -> AnyPublisher<[Anime], Never> in
                 guard let self = self else { return Just([]).eraseToAnyPublisher() }
-                let source: AnyPublisher<[Anime], Error> = query.trimmingCharacters(in: .whitespaces).isEmpty
-                    ? self.getTopAnimeUseCase.execute(page: 1)
-                    : self.searchAnimeUseCase.execute(query: query)
-
-                return source
+                return self.getTopAnimeUseCase.execute(page: 1)
                     .catch { [weak self] error -> Just<[Anime]> in
                         self?.errorMessage = error.localizedDescription
                         return Just([])
                     }
                     .eraseToAnyPublisher()
             }
-            .switchToLatest()
-            .handleEvents(receiveOutput: { [weak self] _ in self?.isLoading = false })
             .receive(on: RunLoop.main)
-            .assign(to: &$animeList)
+            .sink { [weak self] list in
+                self?.allAnime = list
+                self?.applyFilter()
+                self?.isLoading = false
+            }
+            .store(in: &cancellables)
+
+        $searchQuery
+            .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
+            .removeDuplicates()
+            .sink { [weak self] _ in
+                self?.applyFilter()
+            }
+            .store(in: &cancellables)
+    }
+
+    private func applyFilter() {
+        let query = searchQuery.trimmingCharacters(in: .whitespaces).lowercased()
+        if query.isEmpty {
+            animeList = allAnime
+        } else {
+            animeList = allAnime.filter { $0.title.lowercased().contains(query) }
+        }
     }
 }
