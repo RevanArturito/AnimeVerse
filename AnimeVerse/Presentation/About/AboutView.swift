@@ -20,7 +20,7 @@ struct AboutView: View {
                         .overlay(Circle().stroke(Color.accentPink, lineWidth: 2))
                         .padding(.top, 24)
 
-                    Text("Nama Kamu")
+                    Text("Cokorda Arturito Revan Putra Diarta")
                         .font(.heading(22))
                         .foregroundColor(.textPrimary)
 
@@ -38,9 +38,8 @@ struct AboutView: View {
                     Divider().background(Color.bgCard).padding(.vertical, 12)
 
                     VStack(alignment: .leading, spacing: 14) {
-                        InfoRow(icon: "envelope.fill", text: "email@kamu.com")
-                        InfoRow(icon: "link", text: "github.com/username")
-                        InfoRow(icon: "graduationcap.fill", text: "Dicoding / Kampus kamu")
+                        InfoRow(icon: "envelope.fill", text: "off.revan.arturito@gmail.com")
+                        InfoRow(icon: "graduationcap.fill", text: "dicoding.com/users/revanarturito/academies")
                     }
                     .padding(.horizontal, 24)
                     .frame(maxWidth: .infinity, alignment: .leading)
