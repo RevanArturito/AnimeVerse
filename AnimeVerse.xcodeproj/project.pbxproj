@@ -41,6 +41,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		B67E95A4305870BE00FC724B /* Exceptions for "Common" folder in "AnimeVerse" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"/Localized: Sources/Common/Resources/en.lproj/Localizable.strings",
+				"/Localized: Sources/Common/Resources/id.lproj/Localizable.strings",
+				Package.swift,
+			);
+			target = B6B3B3653057B88500B78383 /* AnimeVerse */;
+		};
 		B6B3B4213057C85000B78383 /* Exceptions for "AnimeVerse" folder in "AnimeVerse" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -51,6 +60,39 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		B67E9566305866B900FC724B /* Modules */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		B67E957930586A8600FC724B /* HomeFeature */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HomeFeature;
+			sourceTree = "<group>";
+		};
+		B67E958330586C3900FC724B /* DetailFeature */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = DetailFeature;
+			sourceTree = "<group>";
+		};
+		B67E958430586C4200FC724B /* AboutFeature */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AboutFeature;
+			sourceTree = "<group>";
+		};
+		B67E958530586C5000FC724B /* FavoriteFeature */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FavoriteFeature;
+			sourceTree = "<group>";
+		};
+		B67E95A2305870BD00FC724B /* Common */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				B67E95A4305870BE00FC724B /* Exceptions for "Common" folder in "AnimeVerse" target */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		B6B3B3683057B88500B78383 /* AnimeVerse */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -105,7 +147,13 @@
 		B6B3B35D3057B88500B78383 = {
 			isa = PBXGroup;
 			children = (
+				B67E958530586C5000FC724B /* FavoriteFeature */,
+				B67E958430586C4200FC724B /* AboutFeature */,
+				B67E958330586C3900FC724B /* DetailFeature */,
+				B67E957930586A8600FC724B /* HomeFeature */,
+				B67E9566305866B900FC724B /* Modules */,
 				B6B3B4223057C86C00B78383 /* .gitignore */,
+				B67E95A2305870BD00FC724B /* Common */,
 				B6B3B3683057B88500B78383 /* AnimeVerse */,
 				B6B3B3763057B88600B78383 /* AnimeVerseTests */,
 				B6B3B3803057B88600B78383 /* AnimeVerseUITests */,
@@ -139,6 +187,12 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				B67E9566305866B900FC724B /* Modules */,
+				B67E957930586A8600FC724B /* HomeFeature */,
+				B67E958330586C3900FC724B /* DetailFeature */,
+				B67E958430586C4200FC724B /* AboutFeature */,
+				B67E958530586C5000FC724B /* FavoriteFeature */,
+				B67E95A2305870BD00FC724B /* Common */,
 				B6B3B3683057B88500B78383 /* AnimeVerse */,
 			);
 			name = AnimeVerse;
@@ -229,6 +283,7 @@
 			knownRegions = (
 				en,
 				Base,
+				id,
 			);
 			mainGroup = B6B3B35D3057B88500B78383;
 			minimizedProjectReferenceProxies = 1;
