@@ -11,8 +11,7 @@ final class PresentationAssembly: Assembly {
     func assemble(container: Container) {
         container.register(HomeViewModel.self) { r in
             HomeViewModel(
-                getTopAnimeUseCase: r.resolve(GetTopAnimeUseCase.self)!,
-                searchAnimeUseCase: r.resolve(SearchAnimeUseCase.self)!
+                getTopAnimeUseCase: r.resolve(GetTopAnimeUseCase.self)!
             )
         }
 
@@ -20,7 +19,6 @@ final class PresentationAssembly: Assembly {
             FavoriteViewModel(getFavoriteAnimeUseCase: r.resolve(GetFavoriteAnimeUseCase.self)!)
         }
 
-        // DetailViewModel butuh argument `animeId` -> pakai closure argument Swinject
         container.register(DetailViewModel.self) { (r, animeId: Int) in
             DetailViewModel(
                 animeId: animeId,

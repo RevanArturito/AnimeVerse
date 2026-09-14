@@ -12,9 +12,6 @@ final class DomainAssembly: Assembly {
         container.register(GetTopAnimeUseCase.self) { r in
             GetTopAnimeUseCaseImpl(repository: r.resolve(AnimeRepository.self)!)
         }
-        container.register(SearchAnimeUseCase.self) { r in
-            SearchAnimeUseCaseImpl(repository: r.resolve(AnimeRepository.self)!)
-        }
         container.register(GetAnimeDetailUseCase.self) { r in
             GetAnimeDetailUseCaseImpl(repository: r.resolve(AnimeRepository.self)!)
         }

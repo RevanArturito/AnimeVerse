@@ -11,7 +11,6 @@ import Foundation
 
 protocol AnimeRemoteDataSource {
     func getTopAnime(page: Int) -> AnyPublisher<[AnimeDataDTO], Error>
-    func searchAnime(query: String) -> AnyPublisher<[AnimeDataDTO], Error>
     func getAnimeDetail(id: Int) -> AnyPublisher<AnimeDetailDataDTO, Error>
 }
 
@@ -19,12 +18,6 @@ final class AnimeRemoteDataSourceImpl: AnimeRemoteDataSource {
 
     func getTopAnime(page: Int) -> AnyPublisher<[AnimeDataDTO], Error> {
         request(url: AnimeAPI.topAnime(page: page), as: AnimeListResponse.self)
-            .map(\.data)
-            .eraseToAnyPublisher()
-    }
-
-    func searchAnime(query: String) -> AnyPublisher<[AnimeDataDTO], Error> {
-        request(url: AnimeAPI.search(query: query), as: AnimeSearchResponse.self)
             .map(\.data)
             .eraseToAnyPublisher()
     }

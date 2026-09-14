@@ -11,10 +11,6 @@ struct AnimeListResponse: Decodable {
     let data: [AnimeDataDTO]
 }
 
-struct AnimeSearchResponse: Decodable {
-    let data: [AnimeDataDTO]
-}
-
 struct AnimeDataDTO: Decodable {
     let malId: Int
     let title: String

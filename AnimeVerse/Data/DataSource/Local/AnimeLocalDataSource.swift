@@ -57,7 +57,7 @@ final class AnimeLocalDataSourceImpl: AnimeLocalDataSource {
                 request.predicate = NSPredicate(format: "malId == %d", id)
                 do {
                     let results = try self.stack.context.fetch(request)
-                    results.forEach { self.stack.context.delete($0 as! NSManagedObject) }
+                    results.forEach { self.stack.context.delete($0 as NSManagedObject) }
                     self.stack.saveContext()
                     promise(.success(()))
                 } catch {

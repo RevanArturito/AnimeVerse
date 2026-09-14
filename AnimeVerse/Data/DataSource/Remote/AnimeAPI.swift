@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 enum AnimeAPI {
     static var baseURL: String {
         guard let url = Bundle.main.object(forInfoDictionaryKey: "API_BASE_URL") as? String,
@@ -20,11 +18,6 @@ enum AnimeAPI {
 
     static func topAnime(page: Int) -> String {
         "\(baseURL)/top/anime?page=\(page)"
-    }
-
-    static func search(query: String) -> String {
-        let encoded = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? query
-        return "\(baseURL)/anime?q=\(encoded)&order_by=popularity"
     }
 
     static func detail(id: Int) -> String {

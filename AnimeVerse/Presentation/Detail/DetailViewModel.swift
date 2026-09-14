@@ -37,7 +37,7 @@ final class DetailViewModel: ObservableObject {
             .receive(on: RunLoop.main)
             .sink { [weak self] completion in
                 self?.isLoading = false
-                if case .failure(let error) = completion {
+                if case .failure(_) = completion {
                     self?.errorMessage = "Gagal memuat data, coba lagi."
                 }
             } receiveValue: { [weak self] detail in
@@ -55,7 +55,7 @@ final class DetailViewModel: ObservableObject {
         action
             .receive(on: RunLoop.main)
             .sink { [weak self] completion in
-                if case .failure(let error) = completion {
+                if case .failure(_) = completion {
                     self?.errorMessage = "Gagal memuat data, coba lagi."
                 }
             } receiveValue: { [weak self] _ in

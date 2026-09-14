@@ -18,15 +18,13 @@ final class HomeViewModel: ObservableObject {
     private var allAnime: [Anime] = []
 
     private let getTopAnimeUseCase: GetTopAnimeUseCase
-    private let searchAnimeUseCase: SearchAnimeUseCase
     private var cancellables = Set<AnyCancellable>()
 
     private let viewDidLoadSubject = PassthroughSubject<Void, Never>()
     private let pullToRefreshSubject = PassthroughSubject<Void, Never>()
 
-    init(getTopAnimeUseCase: GetTopAnimeUseCase, searchAnimeUseCase: SearchAnimeUseCase) {
+    init(getTopAnimeUseCase: GetTopAnimeUseCase) {
         self.getTopAnimeUseCase = getTopAnimeUseCase
-        self.searchAnimeUseCase = searchAnimeUseCase
         bind()
     }
 

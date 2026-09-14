@@ -24,14 +24,6 @@ final class AnimeRepositoryImpl: AnimeRepository {
             .eraseToAnyPublisher()
     }
 
-    func searchAnime(query: String) -> AnyPublisher<[Anime], Error> {
-        remote.searchAnime(query: query)
-            .flatMap { [weak self] dtos -> AnyPublisher<[Anime], Error> in
-                self?.attachFavoriteStatus(dtos: dtos) ?? Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()
-            }
-            .eraseToAnyPublisher()
-    }
-
     func getAnimeDetail(id: Int) -> AnyPublisher<AnimeDetail, Error> {
         Publishers.Zip(remote.getAnimeDetail(id: id), local.isFavorite(id: id))
             .map { dto, favorite in AnimeMapper.toEntity(dto, isFavorite: favorite) }
