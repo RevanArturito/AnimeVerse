@@ -6,6 +6,15 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B6B3B3933057BA7B00B78383 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = B6B3B3923057BA7B00B78383 /* RxCocoa */; };
+		B6B3B3953057BA7B00B78383 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = B6B3B3943057BA7B00B78383 /* RxRelay */; };
+		B6B3B3973057BA7B00B78383 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B6B3B3963057BA7B00B78383 /* RxSwift */; };
+		B6B3B39A3057BAEC00B78383 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = B6B3B3993057BAEC00B78383 /* Swinject */; };
+		B6B3B39D3057BB4A00B78383 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B6B3B39C3057BB4A00B78383 /* Alamofire */; };
+		B6B3B3A03057BBD500B78383 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B6B3B39F3057BBD500B78383 /* Kingfisher */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		B6B3B3743057B88600B78383 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +61,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6B3B3A03057BBD500B78383 /* Kingfisher in Frameworks */,
+				B6B3B39D3057BB4A00B78383 /* Alamofire in Frameworks */,
+				B6B3B3973057BA7B00B78383 /* RxSwift in Frameworks */,
+				B6B3B3953057BA7B00B78383 /* RxRelay in Frameworks */,
+				B6B3B3933057BA7B00B78383 /* RxCocoa in Frameworks */,
+				B6B3B39A3057BAEC00B78383 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +127,12 @@
 			);
 			name = AnimeVerse;
 			packageProductDependencies = (
+				B6B3B3923057BA7B00B78383 /* RxCocoa */,
+				B6B3B3943057BA7B00B78383 /* RxRelay */,
+				B6B3B3963057BA7B00B78383 /* RxSwift */,
+				B6B3B3993057BAEC00B78383 /* Swinject */,
+				B6B3B39C3057BB4A00B78383 /* Alamofire */,
+				B6B3B39F3057BBD500B78383 /* Kingfisher */,
 			);
 			productName = AnimeVerse;
 			productReference = B6B3B3663057B88500B78383 /* AnimeVerse.app */;
@@ -195,6 +216,12 @@
 			);
 			mainGroup = B6B3B35D3057B88500B78383;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B6B3B3913057BA7B00B78383 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				B6B3B3983057BAEC00B78383 /* XCRemoteSwiftPackageReference "Swinject" */,
+				B6B3B39B3057BB4A00B78383 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				B6B3B39E3057BBD500B78383 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B6B3B3673057B88500B78383 /* Products */;
 			projectDirPath = "";
@@ -578,6 +605,74 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B6B3B3913057BA7B00B78383 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.10.2;
+			};
+		};
+		B6B3B3983057BAEC00B78383 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.10.0;
+			};
+		};
+		B6B3B39B3057BB4A00B78383 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.12.2;
+			};
+		};
+		B6B3B39E3057BBD500B78383 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.12.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B6B3B3923057BA7B00B78383 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B6B3B3913057BA7B00B78383 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		B6B3B3943057BA7B00B78383 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B6B3B3913057BA7B00B78383 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		B6B3B3963057BA7B00B78383 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B6B3B3913057BA7B00B78383 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		B6B3B3993057BAEC00B78383 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B6B3B3983057BAEC00B78383 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+		B6B3B39C3057BB4A00B78383 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B6B3B39B3057BB4A00B78383 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		B6B3B39F3057BBD500B78383 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B6B3B39E3057BBD500B78383 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B6B3B35E3057B88500B78383 /* Project object */;
 }
