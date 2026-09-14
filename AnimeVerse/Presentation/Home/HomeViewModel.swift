@@ -40,7 +40,7 @@ final class HomeViewModel: ObservableObject {
                 guard let self = self else { return Just([]).eraseToAnyPublisher() }
                 return self.getTopAnimeUseCase.execute(page: 1)
                     .catch { [weak self] error -> Just<[Anime]> in
-                        self?.errorMessage = error.localizedDescription
+                        self?.errorMessage = "Gagal memuat data, coba lagi."
                         return Just([])
                     }
                     .eraseToAnyPublisher()
