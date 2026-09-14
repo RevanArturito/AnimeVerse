@@ -13,6 +13,7 @@
 		B6B3B39A3057BAEC00B78383 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = B6B3B3993057BAEC00B78383 /* Swinject */; };
 		B6B3B39D3057BB4A00B78383 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B6B3B39C3057BB4A00B78383 /* Alamofire */; };
 		B6B3B3A03057BBD500B78383 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B6B3B39F3057BBD500B78383 /* Kingfisher */; };
+		B6B3B4233057C87100B78383 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B6B3B4223057C86C00B78383 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,11 +37,37 @@
 		B6B3B3663057B88500B78383 /* AnimeVerse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimeVerse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6B3B3733057B88600B78383 /* AnimeVerseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnimeVerseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6B3B37D3057B88600B78383 /* AnimeVerseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnimeVerseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6B3B4223057C86C00B78383 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		B6B3B4213057C85000B78383 /* Exceptions for "AnimeVerse" folder in "AnimeVerse" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Example.xcconfig,
+				Info.plist,
+			);
+			target = B6B3B3653057B88500B78383 /* AnimeVerse */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		B6B3B4263057C8B500B78383 /* Exceptions for "AnimeVerse" folder in "Compile Sources" phase from "AnimeVerse" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = B6B3B3623057B88500B78383 /* Sources */;
+			membershipExceptions = (
+				Example.xcconfig,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		B6B3B3683057B88500B78383 /* AnimeVerse */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				B6B3B4213057C85000B78383 /* Exceptions for "AnimeVerse" folder in "AnimeVerse" target */,
+				B6B3B4263057C8B500B78383 /* Exceptions for "AnimeVerse" folder in "Compile Sources" phase from "AnimeVerse" target */,
+			);
 			path = AnimeVerse;
 			sourceTree = "<group>";
 		};
@@ -90,6 +117,7 @@
 		B6B3B35D3057B88500B78383 = {
 			isa = PBXGroup;
 			children = (
+				B6B3B4223057C86C00B78383 /* .gitignore */,
 				B6B3B3683057B88500B78383 /* AnimeVerse */,
 				B6B3B3763057B88600B78383 /* AnimeVerseTests */,
 				B6B3B3803057B88600B78383 /* AnimeVerseUITests */,
@@ -239,6 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6B3B4233057C87100B78383 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +327,8 @@
 /* Begin XCBuildConfiguration section */
 		B6B3B3853057B88600B78383 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = B6B3B3683057B88500B78383 /* AnimeVerse */;
+			baseConfigurationReferenceRelativePath = Secret.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -362,6 +393,8 @@
 		};
 		B6B3B3863057B88600B78383 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReferenceAnchor = B6B3B3683057B88500B78383 /* AnimeVerse */;
+			baseConfigurationReferenceRelativePath = Secret.xcconfig;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -427,6 +460,7 @@
 				DEVELOPMENT_TEAM = KW7V9XG9LQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AnimeVerse/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -459,6 +493,7 @@
 				DEVELOPMENT_TEAM = KW7V9XG9LQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AnimeVerse/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
