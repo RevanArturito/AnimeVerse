@@ -2,11 +2,10 @@
 //  DetailView.swift
 //  AnimeVerse
 //
-//  Created by Revan Arturito on 14/09/26.
-//
 
 import SwiftUI
 import Kingfisher
+import Common
 
 struct DetailView: View {
     @StateObject var viewModel: DetailViewModel
@@ -39,7 +38,7 @@ struct DetailView: View {
                             .font(.body(13))
                             .foregroundColor(.textSecondary)
 
-                        Text("Sinopsis")
+                        Text("detail.synopsis".localized)
                             .font(.heading(18))
                             .foregroundColor(.textPrimary)
                             .padding(.top, 4)

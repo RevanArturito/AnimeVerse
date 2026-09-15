@@ -2,25 +2,16 @@
 //  HomeAssembly.swift
 //  AnimeVerse
 //
-//  Created by Revan Arturito on 15/09/26.
-//
+
+import Swinject
+import Core
 
 public final class HomeAssembly: Assembly {
-    
     public init() {}
-    
-    public func assemble(
-        container: Container
-    ) {
-        container.register(
-            HomeViewModel.self
-        ) { resolver in
-            
-            HomeViewModel(
-                getTopAnimeUseCase: resolver.resolve(
-                    GetTopAnimeUseCase.self
-                )!
-            )
+
+    public func assemble(container: Container) {
+        container.register(HomeViewModel.self) { r in
+            HomeViewModel(getTopAnimeUseCase: r.resolve(GetTopAnimeUseCase.self)!)
         }
     }
 }

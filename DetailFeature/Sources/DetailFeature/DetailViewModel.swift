@@ -2,11 +2,10 @@
 //  DetailViewModel.swift
 //  AnimeVerse
 //
-//  Created by Revan Arturito on 14/09/26.
-//
 
 import Combine
 import Foundation
+import Core
 
 final class DetailViewModel: ObservableObject {
     let animeId: Int
@@ -31,13 +30,13 @@ final class DetailViewModel: ObservableObject {
     }
 
     func onAppear() {
-        guard detail == nil else { return } 
+        guard detail == nil else { return }
         isLoading = true
-        getAnimeDetailUseCase.execute(id: animeId)
+        getAnimeDetailUseCase.execute(animeId)
             .receive(on: RunLoop.main)
             .sink { [weak self] completion in
                 self?.isLoading = false
-                if case .failure(_) = completion {
+                if case .failure = completion {
                     self?.errorMessage = "Gagal memuat data, coba lagi."
                 }
             } receiveValue: { [weak self] detail in
@@ -49,13 +48,13 @@ final class DetailViewModel: ObservableObject {
     func toggleFavorite() {
         guard let current = detail else { return }
         let action = current.isFavorite
-            ? removeFavoriteUseCase.execute(id: current.id)
-            : addFavoriteUseCase.execute(anime: current)
+            ? removeFavoriteUseCase.execute(current.id)
+            : addFavoriteUseCase.execute(current)
 
         action
             .receive(on: RunLoop.main)
             .sink { [weak self] completion in
-                if case .failure(_) = completion {
+                if case .failure = completion {
                     self?.errorMessage = "Gagal memuat data, coba lagi."
                 }
             } receiveValue: { [weak self] _ in

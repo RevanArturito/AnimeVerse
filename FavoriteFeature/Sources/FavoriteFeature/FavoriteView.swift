@@ -2,11 +2,11 @@
 //  FavoriteView.swift
 //  AnimeVerse
 //
-//  Created by Revan Arturito on 14/09/26.
-//
 
 import SwiftUI
-import Swinject
+import Core
+import Common
+import DetailFeature
 
 struct FavoriteView: View {
     @StateObject var viewModel: FavoriteViewModel
@@ -19,7 +19,7 @@ struct FavoriteView: View {
                 if viewModel.isLoading && viewModel.favorites.isEmpty {
                     ProgressView().tint(.accentPink)
                 } else if viewModel.favorites.isEmpty {
-                    Text("Belum ada anime favorit.\nTekan ikon hati di halaman detail.")
+                    Text("favorite.empty".localized)
                         .font(.body())
                         .foregroundColor(.textSecondary)
                         .multilineTextAlignment(.center)
@@ -37,14 +37,13 @@ struct FavoriteView: View {
                     .scrollContentBackground(.hidden)
                 }
             }
-            .navigationTitle("Favorit")
+            .navigationTitle("favorite.title".localized)
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: Int.self) { animeId in
-                DetailView(viewModel: AppAssembly.shared.resolver.resolve(DetailViewModel.self, argument: animeId)!)
+                DetailView(viewModel: AppContainer.shared.container.resolve(DetailViewModel.self, argument: animeId)!)
             }
             .onAppear { viewModel.reload() }
         }
         .tint(.accentPink)
     }
 }
-

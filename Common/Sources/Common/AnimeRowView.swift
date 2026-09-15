@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Kingfisher
+import Core
 
 public struct AnimeRowView: View {
     private let anime: Anime

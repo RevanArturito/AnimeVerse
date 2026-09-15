@@ -2,25 +2,25 @@
 //  HomeView.swift
 //  AnimeVerse
 //
-//  Created by Revan Arturito on 14/09/26.
-//
 
 import SwiftUI
-import Swinject
+import Core
+import Common
+import DetailFeature
 
 struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
-    
+
     var body: some View {
         NavigationStack {
             ZStack {
                 Color.bgPrimary.ignoresSafeArea()
-                
+
                 if viewModel.isLoading && viewModel.animeList.isEmpty {
                     ProgressView()
                         .tint(.accentPink)
                 } else if viewModel.animeList.isEmpty {
-                    Text("Tidak ada hasil")
+                    Text("home.empty_result".localized)
                         .font(.body())
                         .foregroundColor(.textSecondary)
                 } else {
@@ -37,11 +37,11 @@ struct HomeView: View {
                     .refreshable { viewModel.refresh() }
                 }
             }
-            .navigationTitle("Top Anime")
+            .navigationTitle("home.title".localized)
             .navigationBarTitleDisplayMode(.inline)
-            .searchable(text: $viewModel.searchQuery, prompt: "Cari anime...")
+            .searchable(text: $viewModel.searchQuery, prompt: "home.search_placeholder".localized)
             .navigationDestination(for: Int.self) { animeId in
-                DetailView(viewModel: AppAssembly.shared.resolver.resolve(DetailViewModel.self, argument: animeId)!)
+                DetailView(viewModel: AppContainer.shared.container.resolve(DetailViewModel.self, argument: animeId)!)
             }
             .onAppear { viewModel.onAppear() }
             .alert(

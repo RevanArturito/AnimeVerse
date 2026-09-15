@@ -2,6 +2,21 @@
 //  DetailAssembly.swift
 //  AnimeVerse
 //
-//  Created by Revan Arturito on 15/09/26.
-//
 
+import Swinject
+import Core
+
+public final class DetailAssembly: Assembly {
+    public init() {}
+
+    public func assemble(container: Container) {
+        container.register(DetailViewModel.self) { (r, animeId: Int) in
+            DetailViewModel(
+                animeId: animeId,
+                getAnimeDetailUseCase: r.resolve(GetAnimeDetailUseCase.self)!,
+                addFavoriteUseCase: r.resolve(AddFavoriteAnimeUseCase.self)!,
+                removeFavoriteUseCase: r.resolve(RemoveFavoriteAnimeUseCase.self)!
+            )
+        }
+    }
+}

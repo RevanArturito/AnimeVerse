@@ -2,6 +2,16 @@
 //  FavoriteAssembly.swift
 //  AnimeVerse
 //
-//  Created by Revan Arturito on 15/09/26.
-//
 
+import Swinject
+import Core
+
+public final class FavoriteAssembly: Assembly {
+    public init() {}
+
+    public func assemble(container: Container) {
+        container.register(FavoriteViewModel.self) { r in
+            FavoriteViewModel(getFavoriteAnimeUseCase: r.resolve(GetFavoriteAnimeUseCase.self)!)
+        }
+    }
+}
