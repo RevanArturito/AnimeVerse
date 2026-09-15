@@ -1,32 +1,51 @@
 //
-//  FavoriteViewModel.swift
-//  AnimeVerse
+//  FavoriteView.swift
+//  AnimeVerse
 //
 
-import Combine
-import Foundation
+import SwiftUI
 import Core
+import Common
+import DetailFeature
+import Swinject
 
-final class FavoriteViewModel: ObservableObject {
-    @Published private(set) var favorites: [Anime] = []
-    @Published private(set) var isLoading: Bool = false
-
-    private let getFavoriteAnimeUseCase: GetFavoriteAnimeUseCase
-    private var cancellables = Set<AnyCancellable>()
-
-    init(getFavoriteAnimeUseCase: GetFavoriteAnimeUseCase) {
-        self.getFavoriteAnimeUseCase = getFavoriteAnimeUseCase
-    }
-
-    func reload() {
-        isLoading = true
-        getFavoriteAnimeUseCase.execute(())
-            .receive(on: RunLoop.main)
-            .sink { [weak self] _ in
-                self?.isLoading = false
-            } receiveValue: { [weak self] list in
-                self?.favorites = list
+struct FavoriteView: View {
+    @StateObject var viewModel: FavoriteViewModel
+    
+    var body: some View {
+        NavigationStack {
+            ZStack {
+                Color.bgPrimary.ignoresSafeArea()
+                
+                if viewModel.isLoading && viewModel.favorites.isEmpty {
+                    ProgressView().tint(.accentPink)
+                } else if viewModel.favorites.isEmpty {
+                    Text("favorite.empty".localized)
+                                  .font(.body())
+                                .foregroundColor(.textSecondary)
+                                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 32)
+                } else {
+                            List(viewModel.favorites) { anime in
+                                AnimeRowView(anime: anime)
+                                .background(
+                                NavigationLink(value: anime.id) { EmptyView() }
+                                                                                                   .opacity(0)
+                                )
+                                                      .listRowSeparator(.hidden)
+                            }
+                                            .listStyle(.plain)
+                                              .scrollContentBackground(.hidden)
+                        }
             }
-            .store(in: &cancellables)
+                    .navigationTitle("favorite.title".localized)
+                        .navigationBarTitleDisplayMode(.inline)
+                  .navigationDestination(for: Int.self) { animeId in
+                      DetailView(viewModel: AppAssembly.shared.assembler.resolver.resolve(DetailViewModel.self, argument: animeId)!)
+                  }
+                      .onAppear { viewModel.reload() }
+        }
+                .tint(.accentPink)
     }
 }
+

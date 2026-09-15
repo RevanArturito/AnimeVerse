@@ -7,6 +7,7 @@ import SwiftUI
 import Core
 import Common
 import DetailFeature
+import Swinject
 
 struct HomeView: View {
     @StateObject var viewModel: HomeViewModel
@@ -41,7 +42,7 @@ struct HomeView: View {
             .navigationBarTitleDisplayMode(.inline)
             .searchable(text: $viewModel.searchQuery, prompt: "home.search_placeholder".localized)
             .navigationDestination(for: Int.self) { animeId in
-                DetailView(viewModel: AppContainer.shared.container.resolve(DetailViewModel.self, argument: animeId)!)
+                DetailView(viewModel: AppAssembly.shared.assembler.resolver.resolve(DetailViewModel.self, argument: animeId)!)
             }
             .onAppear { viewModel.onAppear() }
             .alert(

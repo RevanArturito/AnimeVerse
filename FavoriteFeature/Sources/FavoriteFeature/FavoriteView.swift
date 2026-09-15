@@ -6,12 +6,20 @@
 import SwiftUI
 import Core
 import Common
-import DetailFeature
 
-struct FavoriteView: View {
+public struct FavoriteView<DetailContent: View>: View {
     @StateObject var viewModel: FavoriteViewModel
+    let detailViewBuilder: (Int) -> DetailContent
 
-    var body: some View {
+    public init(
+        viewModel: FavoriteViewModel,
+        @ViewBuilder detailViewBuilder: @escaping (Int) -> DetailContent
+    ) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
+        self.detailViewBuilder = detailViewBuilder
+    }
+
+    public var body: some View {
         NavigationStack {
             ZStack {
                 Color.bgPrimary.ignoresSafeArea()
@@ -40,7 +48,8 @@ struct FavoriteView: View {
             .navigationTitle("favorite.title".localized)
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(for: Int.self) { animeId in
-                DetailView(viewModel: AppContainer.shared.container.resolve(DetailViewModel.self, argument: animeId)!)
+                // Panggil builder di sini tanpa kenal AppAssembly / DetailView
+                detailViewBuilder(animeId)
             }
             .onAppear { viewModel.reload() }
         }

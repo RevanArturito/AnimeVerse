@@ -15,7 +15,7 @@ public struct AboutView: View {
     public init() {}
     
     public var body: some View {
-        NavigationStack {
+        NavigationView {
             ScrollView {
                 VStack(spacing: 12) {
                     Image("profile_photo")
@@ -56,5 +56,6 @@ public struct AboutView: View {
                 Button("OK", role: .cancel) {}
             }
         }
+        .navigationViewStyle(.stack)
     }
 }

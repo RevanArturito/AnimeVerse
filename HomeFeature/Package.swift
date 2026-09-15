@@ -10,12 +10,13 @@ let package = Package(
     dependencies: [
         .package(name: "Core", path: "../Core"),
         .package(name: "Common", path: "../Common"),
+        .package(path: "../DetailFeature"),
         .package(url: "https://github.com/Swinject/Swinject.git", exact: "2.10.0")
     ],
     targets: [
         .target(
             name: "HomeFeature",
-            dependencies: ["Core", "Common", "Swinject"]
+            dependencies: ["Core", "Common", "Swinject", "DetailFeature"]
         )
     ]
 )

@@ -1,3 +1,4 @@
 # Ignore file/folder Secret
 AnimeVerse/Secret.xcconfig
 
+.build/
